@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,10 +22,20 @@
 		0D22068229362E650067A0D5 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D22068129362E010067A0D5 /* HMAC.swift */; };
 		0D22068329362E670067A0D5 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D22068029362DC80067A0D5 /* AES.swift */; };
 		0D220685293634300067A0D5 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D220684293634300067A0D5 /* SecretKey.swift */; };
-		0D220689293636BC0067A0D5 /* URL+Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D220688293636BC0067A0D5 /* URL+Query.swift */; };
-		0D22068B29364EE90067A0D5 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D22068A29364EE90067A0D5 /* DictionaryExtensions.swift */; };
 		0DB59A9629378E7D0038EFD7 /* InfoMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB59A9529378E7D0038EFD7 /* InfoMessages.swift */; };
+		30E243D32F6341E200046D5D /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E243D22F6341DF00046D5D /* ErrorExtensions.swift */; };
+		30E243D52F6342C700046D5D /* EncryptionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E243D42F6342C500046D5D /* EncryptionHelper.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30E243C92F6327A500046D5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D22061E293619BA0067A0D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D220625293619BA0067A0D5;
+			remoteInfo = "JWE Encryption Demo";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D220626293619BA0067A0D5 /* JWE Encryption Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JWE Encryption Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,13 +55,25 @@
 		0D22068029362DC80067A0D5 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		0D22068129362E010067A0D5 /* HMAC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
 		0D220684293634300067A0D5 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
-		0D220688293636BC0067A0D5 /* URL+Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Query.swift"; sourceTree = "<group>"; };
-		0D22068A29364EE90067A0D5 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		0DB59A9529378E7D0038EFD7 /* InfoMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessages.swift; sourceTree = "<group>"; };
+		30E243C52F6327A500046D5D /* JWE Encryption DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JWE Encryption DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E243D22F6341DF00046D5D /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
+		30E243D42F6342C500046D5D /* EncryptionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		30E243C62F6327A500046D5D /* JWE Encryption DemoTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "JWE Encryption DemoTests"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0D220623293619BA0067A0D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E243C22F6327A500046D5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -65,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0D220628293619BA0067A0D5 /* JWE Encryption Demo */,
+				30E243C62F6327A500046D5D /* JWE Encryption DemoTests */,
 				0D220627293619BA0067A0D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				0D220626293619BA0067A0D5 /* JWE Encryption Demo.app */,
+				30E243C52F6327A500046D5D /* JWE Encryption DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,11 +132,10 @@
 		0D22064229361C180067A0D5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30E243D22F6341DF00046D5D /* ErrorExtensions.swift */,
 				0D22067D29362B980067A0D5 /* ArrayExtensions.swift */,
 				0D22064329361C2A0067A0D5 /* DataExtensions.swift */,
-				0D22068A29364EE90067A0D5 /* DictionaryExtensions.swift */,
 				0D22066A293625400067A0D5 /* StringExtensions.swift */,
-				0D220688293636BC0067A0D5 /* URL+Query.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -129,6 +152,7 @@
 		0D22067F29362DBF0067A0D5 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
+				30E243D42F6342C500046D5D /* EncryptionHelper.swift */,
 				0D22068029362DC80067A0D5 /* AES.swift */,
 				0D22068129362E010067A0D5 /* HMAC.swift */,
 			);
@@ -155,6 +179,29 @@
 			productReference = 0D220626293619BA0067A0D5 /* JWE Encryption Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		30E243C42F6327A500046D5D /* JWE Encryption DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30E243CD2F6327A500046D5D /* Build configuration list for PBXNativeTarget "JWE Encryption DemoTests" */;
+			buildPhases = (
+				30E243C12F6327A500046D5D /* Sources */,
+				30E243C22F6327A500046D5D /* Frameworks */,
+				30E243C32F6327A500046D5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30E243CA2F6327A500046D5D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				30E243C62F6327A500046D5D /* JWE Encryption DemoTests */,
+			);
+			name = "JWE Encryption DemoTests";
+			packageProductDependencies = (
+			);
+			productName = "JWE Encryption DemoTests";
+			productReference = 30E243C52F6327A500046D5D /* JWE Encryption DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -162,11 +209,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					0D220625293619BA0067A0D5 = {
 						CreatedOnToolsVersion = 14.0;
+					};
+					30E243C42F6327A500046D5D = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 0D220625293619BA0067A0D5;
 					};
 				};
 			};
@@ -184,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				0D220625293619BA0067A0D5 /* JWE Encryption Demo */,
+				30E243C42F6327A500046D5D /* JWE Encryption DemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +251,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30E243C32F6327A500046D5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -211,11 +270,11 @@
 				0D22062E293619BA0067A0D5 /* ViewController.swift in Sources */,
 				0DB59A9629378E7D0038EFD7 /* InfoMessages.swift in Sources */,
 				0D22068329362E670067A0D5 /* AES.swift in Sources */,
+				30E243D52F6342C700046D5D /* EncryptionHelper.swift in Sources */,
 				0D22062A293619BA0067A0D5 /* AppDelegate.swift in Sources */,
 				0D22063F29361ABC0067A0D5 /* JWE.swift in Sources */,
 				0D22067C29362AA40067A0D5 /* CustomError.swift in Sources */,
-				0D22068B29364EE90067A0D5 /* DictionaryExtensions.swift in Sources */,
-				0D220689293636BC0067A0D5 /* URL+Query.swift in Sources */,
+				30E243D32F6341E200046D5D /* ErrorExtensions.swift in Sources */,
 				0D220685293634300067A0D5 /* SecretKey.swift in Sources */,
 				0D22066B293625400067A0D5 /* StringExtensions.swift in Sources */,
 				0D22062C293619BA0067A0D5 /* SceneDelegate.swift in Sources */,
@@ -224,7 +283,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30E243C12F6327A500046D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30E243CA2F6327A500046D5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D220625293619BA0067A0D5 /* JWE Encryption Demo */;
+			targetProxy = 30E243C92F6327A500046D5D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0D22062F293619BA0067A0D5 /* Main.storyboard */ = {
@@ -280,6 +354,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = P9B2RN8KE3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -301,6 +376,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -340,6 +416,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P9B2RN8KE3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -354,6 +431,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -367,7 +445,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P9B2RN8KE3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JWE Encryption Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -375,7 +452,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -396,7 +473,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P9B2RN8KE3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JWE Encryption Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -404,7 +480,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,10 +494,61 @@
 			};
 			name = Release;
 		};
+		30E243CB2F6327A500046D5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gt.JWE-Encryption-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JWE Encryption Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JWE Encryption Demo";
+			};
+			name = Debug;
+		};
+		30E243CC2F6327A500046D5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gt.JWE-Encryption-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JWE Encryption Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JWE Encryption Demo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D220621293619BA0067A0D5 /* Build configuration list for PBXProject "JWE Encryption DEMO" */ = {
+		0D220621293619BA0067A0D5 /* Build configuration list for PBXProject "JWE Encryption Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D220638293619BC0067A0D5 /* Debug */,
@@ -435,6 +562,15 @@
 			buildConfigurations = (
 				0D22063B293619BC0067A0D5 /* Debug */,
 				0D22063C293619BC0067A0D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30E243CD2F6327A500046D5D /* Build configuration list for PBXNativeTarget "JWE Encryption DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30E243CB2F6327A500046D5D /* Debug */,
+				30E243CC2F6327A500046D5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

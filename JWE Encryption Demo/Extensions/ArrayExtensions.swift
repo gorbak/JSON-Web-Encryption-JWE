@@ -6,13 +6,13 @@ extension ArraySlice {
     }
     
     var data: Data {
-        Data(bytes: self.array, count: self.array.count)
+        return self.withUnsafeBytes { Data($0) }
     }
 }
 
 extension Array {
     var data: Data {
-        Data(bytes: self, count: self.count)
+        return self.withUnsafeBytes { Data($0) }
     }
     
     func splitComponents() -> (left: [Element], right: [Element]) {

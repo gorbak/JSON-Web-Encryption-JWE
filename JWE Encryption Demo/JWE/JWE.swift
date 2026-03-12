@@ -41,9 +41,6 @@ enum JWE {
         hmacData.append(Data(ciphertext))
         hmacData.append(alData)
         
-//        var mac = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-//        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA256), secretKey.macKey.bytes, secretKey.macKey.count, hmacData.bytes, hmacData.count, &mac);
-        
         // Calculate the HMAC for the concatenated input data and compare it with the reference authentication tag.
         let mac = try HMAC.calculate(from: hmacData, with: secretKey.macKey)
 

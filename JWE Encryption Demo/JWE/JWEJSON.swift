@@ -83,11 +83,6 @@ public struct JWEJSON: Codable {
     public let iv: String
     public let tag: String
     public let unprotected: Unprotected
-    
-    
-    //        var a_cipheredtext = a_json.ciphertext.decodeBase64URLData()
-    //        var a_iv = a_json.iv.decodeBase64URLData()
-    //        var a_tag = a_json.tag.decodeBase64URLData()
         
     public init(jsonString: String) throws {
         do {

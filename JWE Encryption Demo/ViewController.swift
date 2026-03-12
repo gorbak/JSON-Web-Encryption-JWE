@@ -7,8 +7,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-
     @IBOutlet weak var view_message: UIView!
     @IBOutlet weak var l_InfoMessage: UILabel!
     
@@ -27,12 +25,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        testEncryption()
         setupGestureRecognizers()
     }
     
+    // MARK: - Keyboard dismissal
     func setupGestureRecognizers() {
         let gesture = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(gesture)
@@ -42,90 +38,7 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func returnPressed(_ sender: Any) {
-        dismissKeyboard()
-    }
-    
-    func testEncryption() {
-        let plaintext = "{\"exampleJson\":\"value\"}".data(using: .utf8)!
-        let key = "cwrfCIOtWfIOfperoOa1cHQiwFudW5KVg3-3qI1KdTo".decodeBase64URLData()
-        
-        print("--== Encrypt ==--")
-        let json: JWEJSON = try! JWE.encrypt(plaintext: plaintext, keyData: key).jwe as JWEJSON
-        let decodedData = json.toDecoded()
-
-        print("--== Decrypt ==--")
-        let decryptedData = try? JWE.decrypt(json: json, key: key)
-        
-        if let decryptedData {
-            print("Result: " + String(data: decryptedData, encoding: .utf8)!)
-        } else {
-            print("Decryption failed!")
-        }
-    }
-    
-    @IBAction func ButtonAction_Encrypt(_ sender: Any) {
-        let plaintext = tv_enc_PlainText.text.data
-        let key = tv_enc_SecretKey.text.decodeBase64URLData() // NOTE: The key string must be base64 encoded!
-        
-        do {
-            let jsonString: String = try JWE.encrypt(plaintext: plaintext, keyData: key).str as String
-            
-            tv_enc_Result.text = jsonString.encodeBase64URL()
-            tv_dec_EncryptedJSON.text = jsonString.encodeBase64URL()
-        } catch {
-            var msg = "-1"
-            
-            if let err = error as? AESError {
-                msg = "( AESError: \(err))"
-            } else if let err = error as? HMACError {
-                msg = "( HMACError: \(err))"
-            }
-            
-            showMessageView(InfoMessages.errorOccured + msg, duration: 3)
-        }
-    }
-    
-    @IBAction func ButtonAction_Decrypt(_ sender: Any) {
-        do {
-            let isInputBase64Encoded = sw_dec_DecodeBase64.isOn
-            var jsonString: String = ""
-            
-            if isInputBase64Encoded { // decode as base64 from the callback
-                jsonString = tv_dec_EncryptedJSON.text.decodeBase64URL()
-            } else {
-                jsonString = tv_dec_EncryptedJSON.text
-            }
-
-            let json: JWEJSON = try JWEJSON(jsonString: jsonString)
-            let key = tv_dec_SecretKey.text.decodeBase64URLData() // NOTE: The key string must be base64 encoded!
-            
-            let decryptedData = try JWE.decrypt(json: json, key: key)
-            
-            tv_dec_Result.text = String(data: decryptedData, encoding: .utf8)!
-        } catch {
-            var msg: String = "\(error)"
-            
-            if let err = error as? AESError {
-                msg = "( AESError: \(err))"
-            } else if let err = error as? HMACError {
-                msg = "( HMACError: \(err))"
-            }
-            
-            showMessageView(InfoMessages.errorOccured + msg, duration: 3)
-        }
-    }
-    
-    @IBAction func ButtonAction_CopyEncryption(_ sender: Any) {
-        UIPasteboard.general.string = tv_enc_Result.text
-        showMessageView(InfoMessages.copySuccess)
-    }
-    
-    @IBAction func ButtonAction_CopyDecryption(_ sender: Any) {
-        UIPasteboard.general.string = tv_dec_Result.text
-        showMessageView(InfoMessages.copySuccess)
-    }
-    
+    // MARK: Private Utils
     private func showMessageView(_ message: String, duration: TimeInterval = 1.0) {
         let animationSpeed = 0.5
         
@@ -138,6 +51,60 @@ class ViewController: UIViewController {
                 self.view_message.alpha = 0
             }
         }
+    }
+
+    private func encrypt() {
+        let plaintext = tv_enc_PlainText.text ?? ""
+        let key = tv_enc_SecretKey.text ?? ""
+        
+        do {
+            let result = try EncryptionHelper.encrypt(plaintext: plaintext,
+                                                      key: key)
+            
+            tv_enc_Result.text = result
+            tv_dec_EncryptedJSON.text = result
+        } catch {
+            showMessageView(InfoMessages.errorOccured + error.message, duration: 3)
+        }
+    }
+
+    private func decrypt() {
+        do {
+            let input = tv_dec_EncryptedJSON.text ?? ""
+            let key = tv_dec_SecretKey.text ?? "" // NOTE: The key string must be base64 encoded!
+            
+            let result = try EncryptionHelper.decrypt(input: input,
+                                                      key: key,
+                                                      isBase64Encoded: sw_dec_DecodeBase64.isOn)
+            
+            tv_dec_Result.text = result
+        } catch {
+            showMessageView(InfoMessages.errorOccured + error.message, duration: 3)
+        }
+    }
+}
+
+extension ViewController { // IBaction extension
+    @IBAction func returnPressed(_ sender: Any) {
+        dismissKeyboard()
+    }
+    
+    @IBAction func ButtonAction_Encrypt(_ sender: Any) {
+        encrypt()
+    }
+    
+    @IBAction func ButtonAction_Decrypt(_ sender: Any) {
+        decrypt()
+    }
+    
+    @IBAction func ButtonAction_CopyEncryption(_ sender: Any) {
+        UIPasteboard.general.string = tv_enc_Result.text
+        showMessageView(InfoMessages.copySuccess)
+    }
+    
+    @IBAction func ButtonAction_CopyDecryption(_ sender: Any) {
+        UIPasteboard.general.string = tv_dec_Result.text
+        showMessageView(InfoMessages.copySuccess)
     }
 }
 
